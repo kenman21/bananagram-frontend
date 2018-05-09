@@ -145,8 +145,7 @@ class Game extends React.Component {
   onDrop = (event) => {
     event.preventDefault()
     // const {letter, game} = event.dataTransfer.getData('object')
-    // console.log(event.dataTransfer)
-    // this.pickTile(letter, game)
+  
     let data = event.dataTransfer.getData('text')
     data = data.split(',')
     const letter = data[0]
