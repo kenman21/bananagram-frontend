@@ -1,7 +1,9 @@
 Bananagrams
+
 Bananagrams is a word game created for groups of 2-4 players. Players choose from a pile of 144 available letter tiles and create as many words as they can in a connected grid format. The player to use all of their letters after all of the tiles in the center pool are exhausted wins!
 
 Installing
+
 To start the Banangrams application, first clone the bananagram-backend repository and follow the directions there. Link: https://github.com/kenman21/bananagram-backend
 
 After following the instructions in banangrams-backend, execute the following commands inside of the bananagram-frontend directory
@@ -24,7 +26,7 @@ After a player has successfully chosen all of their letters, their game board wi
 
 Authors
 
-Sinclair Kinch- MatthewDtotheG
+Sinclair Kinch- s-kinch
 Kenneth Lehr  - kenman21
 
 Acknowledgements
