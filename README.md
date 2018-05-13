@@ -4,7 +4,7 @@ Bananagrams is a word game created for groups of 2-4 players. Players choose fro
 
 Installing
 
-To start the Banangrams application, first clone the bananagram-backend repository and follow the directions there. Link: https://github.com/kenman21/bananagram-backend
+To start the Bananagrams application, first clone the bananagram-backend repository and follow the directions there. Link: https://github.com/kenman21/bananagram-backend
 
 After following the instructions in banangrams-backend, execute the following commands inside of the bananagram-frontend directory
 
@@ -13,6 +13,8 @@ npm install
 To host a local server for the application run the following in terminal while in the project directory:
 
 npm start
+
+When prompted to start the server on a different port number, specify yes by entering "y".
 
 Visit localhost:3001 in your browser to begin using the application.
 
