@@ -26,6 +26,10 @@ Users that enter a game are shown an array of 144 letter tiles. These tiles repr
 
 After a player has successfully chosen all of their letters, their game board will render in the center of the screen. A user can play their letters by dragging a tile from their letter tray onto a square of the game board. Letters used to form words must be placed in a crossword-style format, and adjacent to one another to be considered a valid word. Invalid words are actively checked when a player places a tile, and are shown in an "Invalid Words" section in the left sidebar. When a player has used all of their tiles, and there are still letters in the collective tile pool, they can press the "PEEL" button at the top of the page. Doing so will give every player in the game an additional tile. If a player uses all of their tiles, and the tiles in the collective pool equal 0 or are fewer in number than the total number of players in the game, they win. The name of the winning player is shown in a message at the top of the page to all other players in the game. 
 
+A live demo of the project can be found here: 
+
+https://youtu.be/FCF5EGtfZ-8
+
 Authors
 
 Sinclair Kinch- s-kinch
