@@ -155,19 +155,17 @@ class Game extends React.Component {
     if (!this.state.game_started) {
       this.pickTile(letter, game)
     } else {
-        let start_row = data[2]
-        let start_column = data[3]
-      if (start_row && start_column) {
-        let board_letters_copy = this.state.board_letters.map(function(arr) {return arr.slice()})
-        let letter = this.state.board_letters[start_row][start_column]
+      let start_row = data[2]
+      let start_column = data[3]
+      let board_letters_copy = this.state.board_letters.map(function(arr) {return arr.slice()})
+      let letter = this.state.board_letters[start_row][start_column]
 
-        board_letters_copy[start_row][start_column] = null
+      board_letters_copy[start_row][start_column] = null
 
-        this.setState({
-          player_letters: [...this.state.player_letters, letter],
-          board_letters: board_letters_copy
-        })
-      }
+      this.setState({
+        player_letters: [...this.state.player_letters, letter],
+        board_letters: board_letters_copy
+      })
     }
   }
 
@@ -265,7 +263,7 @@ class Game extends React.Component {
   render(){
     // console.log(this.state.row_words, this.state.column_words);
     // console.log(this.state.board_letters);
-    const invalid_words = this.state.invalid_words.map(word => <li><a class="ui red label" key={word}>{word}</a></li>)
+
     return(
       <div className="noselect">
         <ActionCable channel={{ channel: 'GameChannel', game_id: this.props.openGameroom.id}} onReceived={this.handleSocketResponse}/>
@@ -277,8 +275,9 @@ class Game extends React.Component {
                 <div className="six wide column" style={{padding: 5}}>
                   { this.state.winner ? <h1>{this.state.winner} won!!!!!!</h1> : null}
                   {
-                    this.state.game_started ?
-                    <div className="centered game"><button onClick={this.peel} className="ui yellow submit button">Peel</button></div>: null
+                    this.state.game_started && (this.state.number_of_players > this.props.openGameroom.letters.length) ?
+                    null :
+                    <div className="centered game"><button onClick={this.peel} className="ui yellow submit button">Peel</button></div>
                   }
                 </div>
                 <div className="five wide column" style={{textAlign: "right", padding: 5}}>
@@ -286,7 +285,7 @@ class Game extends React.Component {
                 </div>
           </div>
         </div>
-        <div className="words"><h1> Invalid words: </h1><ul>{invalid_words}</ul> </div>
+        <div className="words"><h1> Invalid words: </h1><ul>{this.state.invalid_words}</ul> </div>
         <div className="context">
 
         { this.state.game_started ?

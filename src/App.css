@@ -138,6 +138,10 @@ td {
   top: 100px;
 }
 
+.words h1 {
+  font-size: 100%;
+}
+
 .context {
   position: absolute;
   top: 75px;

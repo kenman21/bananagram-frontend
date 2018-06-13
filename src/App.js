@@ -29,19 +29,22 @@ class App extends Component {
     }))
   }
 
-  signIn = (username) => {
-    fetch(URL + 'users', {
+  signIn = (username, password) => {
+    fetch(URL + 'users/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        name: username
+        user: {
+          name: username,
+          password: password
+        }
       })
     }).then(res => res.json()).then((res) => {
       this.setState({
         currentUser: res
-      })
+      }, console.log(this.state.currentUser))
     })
   }
 
