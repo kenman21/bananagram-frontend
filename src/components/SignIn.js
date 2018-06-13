@@ -5,19 +5,31 @@ class SignIn extends React.Component {
   constructor(){
     super()
     this.state ={
-      username: ""
+      username: "",
+      password: ""
     }
   }
 
   handleChange = (e) => {
-    this.setState({
-      username: e.target.value
-    })
+    if (e.target.id === "name"){
+      this.setState({
+        username: e.target.value
+      })
+    } else { // e.target.id === "password"
+      this.setState({
+        password: e.target.value
+      })
+    }
   }
 
   handleSubmit = (e) => {
     e.preventDefault()
-    this.props.signIn(this.state.username)
+    if (e.target.id === "login"){
+      this.props.signIn(this.state.username, this.state.password)
+    } else { // e.target.id === "register"
+      // different fetch 
+    }
+
   }
 
 
@@ -33,9 +45,18 @@ class SignIn extends React.Component {
             </tr>
           </tbody>
         </table>
-        <form onSubmit={this.handleSubmit}>
+        <form id="login" onSubmit={this.handleSubmit}>
           <div className="ui form">
-            <input type="text" className="two wide field" placeholder="Enter Your Name" onChange={this.handleChange} />
+            <input id="name" type="text" className="two wide field" placeholder="Enter Your Name" onChange={this.handleChange} />
+            <input id="password" type="text" className="two wide field" placeholder="Enter Your Password" onChange={this.handleChange} />
+            <input className="ui yellow submit button" type="submit" />
+          </div>
+        </form>
+
+        <form id="register" onSubmit={this.handleSubmit}>
+          <div className="ui form">
+            <input id="name" type="text" className="two wide field" placeholder="Enter Your Name" onChange={this.handleChange} />
+            <input id="password" type="text" className="two wide field" placeholder="Enter Your Password" onChange={this.handleChange} />
             <input className="ui yellow submit button" type="submit" />
           </div>
         </form>
