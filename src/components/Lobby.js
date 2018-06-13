@@ -3,6 +3,12 @@ import Tile from './Tile'
 
 class Lobby extends React.Component {
 
+  componentDidMount = () => {
+    if (!localStorage.currentUser) {
+      this.props.history.push('/')
+    }
+  }
+
   render(){
     // console.log(this.props.games);
     const games = this.props.games.map(game =>

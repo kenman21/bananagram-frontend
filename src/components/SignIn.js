@@ -25,11 +25,10 @@ class SignIn extends React.Component {
   handleSubmit = (e) => {
     e.preventDefault()
     if (e.target.id === "login"){
-      this.props.signIn(this.state.username, this.state.password)
+      this.props.signInorRegister("login", this.state.username, this.state.password).then(() => this.props.history.push('/lobby'))
     } else { // e.target.id === "register"
-      // different fetch 
+      this.props.signInorRegister("register", this.state.username, this.state.password).then(() => this.props.history.push('/lobby'))
     }
-
   }
 
 

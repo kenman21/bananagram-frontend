@@ -29,8 +29,8 @@ class App extends Component {
     }))
   }
 
-  signIn = (username, password) => {
-    fetch(URL + 'users/login', {
+  signInorRegister = (word , username, password) => {
+    return fetch(URL + `users/${word}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -42,9 +42,12 @@ class App extends Component {
         }
       })
     }).then(res => res.json()).then((res) => {
-      this.setState({
-        currentUser: res
-      }, console.log(this.state.currentUser))
+
+      if (!res.errors) {
+        this.setState({
+          currentUser: res
+        }, () => localStorage.currentUser = JSON.stringify(this.state.currentUser))
+      }
     })
   }
 
@@ -111,28 +114,33 @@ class App extends Component {
 		// })
   }
 
-  // MySignIn = () => {
-  //   return (<SignIn signIn={this.signIn} />)
-  // }
-  //
-  // MyLobby = () => {
-  //   return (<Lobby currentUser={this.state.currentUser} games={this.state.games}/>)
-  // }
+  MySignIn = () => {
+    return (<SignIn signInorRegister={this.signInorRegister} />)
+  }
+
+  MyLobby = () => {
+   return (<Lobby currentUser={this.state.currentUser} games={this.state.games}/>)
+  }
 
   render() {
-    console.log(this.state.openGameroom);
-    console.log(this.state.currentUser);
+    // console.log(this.state.openGameroom);
+    // console.log(this.state.currentUser);
     return (
       <Router>
         <div>
-          {/*
+          <Route exact path="/" render={({history})=><SignIn signInorRegister={this.signInorRegister} history={history}/>}/>
+          <Route path="/lobby" render={({history})=><Lobby currentUser={this.state.currentUser} games={this.state.games} handleClick={this.handleClick} createGame={this.createGame} history={history}/>}/>
+          <Route path="/game/:id" component={Game} />
+        {/*
+        <div>
           {this.state.currentUser ? <Redirect to='/lobby'/> : <Redirect to='/signin'/>}
           <Route exact path='/lobby' render={this.MyLobby} />
           <Route exact path='/signin' render={this.MySignIn} />
-          */}
-          {this.state.currentUser ? null : <SignIn signIn={this.signIn} />}
+          {this.state.currentUser ? null : <SignIn signInorRegister={this.signInorRegister} />}
           {this.state.openGameroom && this.state.currentUser ? <Game openGameroom={this.state.openGameroom} leaveGame={this.leaveGame} currentUser={this.state.currentUser} removeLetter = {this.removeLetter} peelLetter={this.peelLetter}/>: null}
           {!this.state.openGameroom && this.state.currentUser ? <Lobby currentUser={this.state.currentUser} games={this.state.games} handleClick={this.handleClick} createGame={this.createGame}/> : null}
+        </div>
+        */}
         </div>
       </Router>
     )
